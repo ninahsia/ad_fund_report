@@ -280,7 +280,7 @@ def build_report(vendor: str, metrics: dict, args, work_dir: Path,
     shutil.copy(args.template, work_copy)
 
     subprocess.run(
-        ["python3", str(scripts["unpack.py"]), str(work_copy), str(unpacked)],
+        [sys.executable, str(scripts["unpack.py"]), str(work_copy), str(unpacked)],
         check=True, capture_output=True, text=True,
     )
 
@@ -295,7 +295,7 @@ def build_report(vendor: str, metrics: dict, args, work_dir: Path,
     # accepts it as a valid output.
     tmp_out = out_path.with_name("_tmp_" + out_path.name)
     res = subprocess.run(
-        ["python3", str(scripts["pack.py"]), str(unpacked), str(tmp_out),
+        [sys.executable, str(scripts["pack.py"]), str(unpacked), str(tmp_out),
          "--original", str(work_copy)],
         capture_output=True, text=True,
     )
@@ -315,7 +315,7 @@ def convert_to_pdf(docx_path: Path, args, work_dir: Path, scripts: dict):
     if pdf_in_work.exists():
         pdf_in_work.unlink()
     res = subprocess.run(
-        ["python3", str(scripts["soffice.py"]), "--headless", "--convert-to", "pdf",
+        [sys.executable, str(scripts["soffice.py"]), "--headless", "--convert-to", "pdf",
          str(docx_path), "--outdir", str(work_dir)],
         capture_output=True, text=True,
     )
