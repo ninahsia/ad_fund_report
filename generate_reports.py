@@ -195,12 +195,12 @@ def apply_ctr_value(content: str, m: dict, tpl: argparse.Namespace) -> str:
     )
     if int_part != 0:
         content = content.replace(
-            '              <w:t>0.</w:t>',
-            f'              <w:t>{int_part}.</w:t>',
+            '<w:t>0.</w:t>',
+            f'<w:t>{int_part}.</w:t>',
         )
     content = content.replace(
-        f'              <w:t>{tpl.template_ctr_frac}</w:t>',
-        f'              <w:t>{frac_digits}</w:t>',
+        f'<w:t>{tpl.template_ctr_frac}</w:t>',
+        f'<w:t>{frac_digits}</w:t>',
     )
     return content
 
@@ -213,16 +213,16 @@ def apply_tacos_variant(content: str, m: dict, tpl: argparse.Namespace) -> str:
         '<w:t>TACOS</w:t>',
     )
     content = content.replace(
-        '              <w:t>0.</w:t>',
-        '              <w:t xml:space="preserve"></w:t>',
+        '<w:t>0.</w:t>',
+        '<w:t xml:space="preserve"></w:t>',
     )
     content = content.replace(
-        f'              <w:t>{tpl.template_ctr_frac}</w:t>',
-        '              <w:t xml:space="preserve"></w:t>',
+        f'<w:t>{tpl.template_ctr_frac}</w:t>',
+        '<w:t xml:space="preserve"></w:t>',
     )
     content = content.replace(
-        '              <w:t>%</w:t>',
-        '              <w:t xml:space="preserve"></w:t>',
+        '<w:t>%</w:t>',
+        '<w:t xml:space="preserve"></w:t>',
     )
     content = content.replace('<w:t>CTR = (</w:t>', '<w:t>TACOS = (</w:t>')
     content = content.replace(
